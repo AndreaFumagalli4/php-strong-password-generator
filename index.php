@@ -1,3 +1,16 @@
+<?php 
+
+    function getRandomPassword($passwordLength) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"$%&=?;:_-.,';
+        $randomPassword = '';
+        for ($i = 0; $i < $passwordLength; $i++){
+            $randomPassword .= $characters[rand(0, (strlen($characters) - 1))];
+        }
+        return $randomPassword;
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,15 +34,11 @@
                 <button type="submit">Invia</button>
             </form>
             <?php
-                function getRandomPassword($passwordLength) {
-                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"$%&=?;:_-.,';
-                    $randomPassword = '';
-                    for ($i = 0; $i < $passwordLength; $i++){
-                        $randomPassword .= $characters[rand(0, (strlen($characters) - 1))];
-                    }
-                    return $randomPassword;
+                if (isset($_GET["character"])){
+                    echo "<p>";
+                    echo getRandomPassword(intval($_GET["character"]));
+                    echo "</p>";
                 }
-                echo getRandomPassword(intval($_GET["character"]));
             ?>
         </main>
     </body>
