@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once __DIR__ . '/functions.php';
 ?>
 
@@ -25,11 +26,14 @@
                 <button type="submit">Invia</button>
             </form>
             <?php
-                if (isset($_GET["character"])){
-                    echo "<p>";
-                    echo "La tua nuova password è: ";
-                    echo getRandomPassword(intval($_GET["character"]));
-                    echo "</p>";
+                if ((isset($_GET["character"])) && ($_GET["character"])){
+                    // echo "<p>";
+                    // echo "La tua nuova password è: ";
+                    // echo getRandomPassword(intval($_GET["character"]));
+                    // echo "</p>";
+                    $newPassword = getRandomPassword(intval($_GET["character"]));
+                    $_SESSION['newPassword'] = $newPassword;
+                    header("location: ./viewer.php");
                 }
             ?>
         </main>
