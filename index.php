@@ -14,12 +14,23 @@
         </header>
         <main>
             <form action="./index.php" method="GET">
-                <label for="characters">
+                <label for="character">
                     Inserisci il numero di caratteri che avrà la password
                 </label>
-                <input type="text" name="characters">
+                <input type="text" name="character">
                 <button type="submit">Invia</button>
             </form>
+            <?php
+                function getRandomPassword($passwordLength) {
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"$%&=?;:_-.,';
+                    $randomPassword = '';
+                    for ($i = 0; $i < $passwordLength; $i++){
+                        $randomPassword .= $characters[rand(0, (strlen($characters) - 1))];
+                    }
+                    return $randomPassword;
+                }
+                echo getRandomPassword(intval($_GET["character"]));
+            ?>
         </main>
     </body>
 </html>
